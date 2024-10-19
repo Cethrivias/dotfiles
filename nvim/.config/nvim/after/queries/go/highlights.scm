@@ -1,0 +1,3 @@
+; inherits: go
+
+(identifier) @spell

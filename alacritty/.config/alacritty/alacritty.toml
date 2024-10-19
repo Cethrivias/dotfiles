@@ -1,0 +1,36 @@
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+  # "~/.config/alacritty/catppuccin-macchiato.toml"
+  # "~/.config/alacritty/catppuccin-frappe.toml"
+  # "~/.config/alacritty/catppuccin-latte.toml"
+]
+
+[colors.primary]
+# background = "#262a32"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 16
+
+[font.normal]
+# family = "Hack Nerd Font"
+# family = "FiraCode Nerd Font Mono"
+# family = "ZedMono Nerd Font Mono"
+# family = "FiraMono Nerd Font Mono"
+# style = "Retina"
+family = "MesloLGS Nerd Font Mono"
+
+[font.offset]
+y = 1
+
+[window]
+decorations = "full"
+opacity = 1
+startup_mode = "Fullscreen"
+
+[keyboard]
+bindings = [
+  { key = "T", mods = "Command", action = "ReceiveChar" }
+]

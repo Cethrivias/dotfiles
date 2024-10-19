@@ -1,0 +1,3 @@
+; inherits: cpp
+
+(identifier) @spell

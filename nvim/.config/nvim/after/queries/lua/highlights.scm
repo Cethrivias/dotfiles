@@ -1,0 +1,3 @@
+; inherits: lua
+
+(identifier) @spell

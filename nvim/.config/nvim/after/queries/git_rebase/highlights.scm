@@ -1,0 +1,2 @@
+; inherits: git_rebase
+

@@ -105,6 +105,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias nv=nvim
 alias lg=lazygit
+alias ll="ls -alh"
 #
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
