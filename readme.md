@@ -4,6 +4,8 @@
 
 ```shell
 brew install stow
+brew install oh-my-posh
+brew install zinit
 ```
 
 # Installation

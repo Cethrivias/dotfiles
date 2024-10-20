@@ -229,3 +229,5 @@ strconv
 teardown
 Tmux
 catppuccin
+emacs
+zsh
