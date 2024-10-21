@@ -35,7 +35,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Completion styling
-zstyle ':completion:*' matcher-list 'r:|?=**' 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|?=**'
 # zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} l:|=* r:|=*'
 # zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -44,6 +44,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -a --color $realpath'
 setopt GLOB_DOTS # needed to autocomplete hidden directories
 
 eval "$(fzf --zsh)"
+eval $(thefuck --alias)
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -59,6 +60,77 @@ alias ll="ls -alh --color"
 alias ls="ls --color"
 alias ..="cd .."
 alias ...="cd ../.."
+alias dt='dotnet test --logger "console;verbosity=normal"'
+alias dtf='dotnet test --logger "console;verbosity=normal" --filter'
+alias dwatch='dotnet watch build --project'
+alias javals="/usr/libexec/java_home -V"
+
+# Functions
+lfcd(){
+  # `command` is needed in case `lfcd` is aliased to `lf`
+  cd "$(command lf -last-dir-path="$@")"
+}
+cdfzf() {
+  cd "$(find "$HOME/Projects" -type d ! -path '*/node_modules/*' ! -path '*/src/*' ! -path '*/tests/*' ! -path '*/.*/*' ! -path '*/bin/*' ! -path '*/obj/*' -print | fzf)"
+}
+javaset(){
+  echo `/usr/libexec/java_home -v $1`
+  export JAVA_HOME=`/usr/libexec/java_home -v $1`
+}
+dotnetsecrets(){
+  dir=`basename "$(pwd)"`
+  file="$dir.csproj"
+  if [ ! -f $file ]
+  then
+    echo "File \"$file\" does not exists. Is this a project folder?"
+    return
+  fi
+  uuid=`xpath -e "Project/PropertyGroup/UserSecretsId" -q $file | cut -c16-51`
+  if [ -z "$uuid" ]
+  then
+    echo "Could not find UserSecretsId. Probably secrets were not initialized. Try \"dotnet user-secrets init\""
+    return
+  fi
+  mkdir -p ~/.microsoft/usersecrets/$uuid
+  secrets="~/.microsoft/usersecrets/$uuid/secrets.json"
+  echo "Opening $secrets"
+  nvim ~/.microsoft/usersecrets/$uuid/secrets.json
+}
+
+# Extra env
+# export TERM="xterm-256color"
+export PATH="$PATH:$HOME/go/bin"
 
 # Keybindings
 bindkey -e # emacs style
+
+# EXPERIMENTAL
+function newworktree() {
+    task=$1
+    dir=`basename $(pwd)`
+    worktree_path="$HOME/Projects/tasks/$task/$dir"
+    if [ -d "$worktree_path" ]; then
+        echo "Changing directory to: $worktree_path"
+        cd $worktree_path
+        return
+    fi
+
+    echo "Creating new worktree at: $worktree_path"
+    if [ -n "$(git branch --list $task)" ]; then
+        echo "Branch exists"
+        git worktree add $worktree_path $task
+    else
+        echo "Branch does not exist"
+        git worktree add $worktree_path -b $task
+    fi
+
+    echo "Changing directory to: $worktree_path"
+    cd $worktree_path
+}
+
+# Sourcing private scripts
+local private_scripts_dir="$HOME/.config/zsh/private"
+local private_scripts=( "$(find $private_scripts_dir -type f -name '*.zsh' -print)" )
+for f in "${private_scripts[@]}"; do
+   [[ -f $f ]] && source $f || echo "$f not found"
+done 
