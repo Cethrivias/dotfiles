@@ -99,7 +99,7 @@ dotnetsecrets(){
 
 # Extra env
 export TERM="xterm-256color"
-export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/go/bin:/opt/homebrew/opt/libpq/bin"
 
 # Keybindings
 bindkey -e # emacs style
