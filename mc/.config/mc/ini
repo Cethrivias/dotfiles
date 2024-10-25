@@ -114,6 +114,7 @@ clipboard_paste=
 base_color=
 tmux-256color=
 color_terminals=
+xterm-256color=
 
 [Panels]
 simple_swap=false
