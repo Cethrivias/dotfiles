@@ -74,6 +74,7 @@ alias dt='dotnet test --logger "console;verbosity=normal"'
 alias dtf='dotnet test --logger "console;verbosity=normal" --filter'
 alias dwatch='dotnet watch build --project'
 alias javals="/usr/libexec/java_home -V"
+alias dockertop="docker ps --format '{{ .Names }}' | docker stats"
 
 # Functions
 lfcd(){
