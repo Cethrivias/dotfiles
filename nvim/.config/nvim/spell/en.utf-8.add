@@ -252,3 +252,8 @@ entrypoint
 usr
 JUNIT
 svc
+Fullpath
+fullpath
+cli
+tmux
+printf

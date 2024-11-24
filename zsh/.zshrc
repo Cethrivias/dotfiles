@@ -66,7 +66,7 @@ bindkey -M vicmd "^[3;5~" delete-char
 # Aliases
 alias nv=nvim
 alias lg=lazygit
-alias ll="ls -alh --color"
+alias ll="ls -Alh --color"
 alias ls="ls --color"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -143,5 +143,5 @@ function newworktree() {
 local private_scripts_dir="$HOME/.config/zsh/private"
 local private_scripts=( "$(find $private_scripts_dir -type f -name '*.zsh' -print)" )
 for f in "${private_scripts[@]}"; do
-   [[ -f $f ]] && source $f || echo "$f not found"
+   [[ -f $f ]] && source $f
 done 

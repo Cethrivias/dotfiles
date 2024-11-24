@@ -1,42 +1,50 @@
-version = 2
-final_space = true
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
+
+[palette]
+  light-grey = '#a6adc8'
 
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
 
   [[blocks.segments]]
+    template = '{{ .Path }}'
+    foreground = 'blue'
+    background = 'transparent'
     type = 'path'
     style = 'plain'
-    background = 'transparent'
-    foreground = 'blue'
-    template = '{{ .Path }}'
 
     [blocks.segments.properties]
+      cache_duration = 'none'
       style = 'full'
 
   [[blocks.segments]]
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <red>{{ if gt .Behind 0 }}⇣{{ end }}</><green>{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    foreground = 'p:light-grey'
+    background = 'transparent'
     type = 'git'
     style = 'plain'
-    background = 'transparent'
-    foreground = 'p:light-grey'
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <red>{{ if gt .Behind 0 }}⇣{{ end }}</><green>{{ if gt .Ahead 0 }}⇡{{ end }}</>'
 
     [blocks.segments.properties]
       branch_icon = ''
-      fetch_status = true
+      cache_duration = 'none'
       commit_icon = '@'
+      fetch_status = true
 
 [[blocks]]
   type = 'rprompt'
   overflow = 'hidden'
 
   [[blocks.segments]]
+    foreground = 'p:light-grey'
+    background = 'transparent'
     type = 'executiontime'
     style = 'plain'
-    background = 'transparent'
-    foreground = 'p:light-grey'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
 
 [[blocks]]
   type = 'prompt'
@@ -44,12 +52,11 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   newline = true
 
   [[blocks.segments]]
+    template = '❯'
+    foreground = 'magenta'
+    background = 'transparent'
     type = 'text'
     style = 'plain'
-    background = 'transparent'
-    foreground = 'magenta'
-    # template = '❱'
-    template = '❯'
 
-[palette]
-light-grey = '#a6adc8'
+    [blocks.segments.properties]
+      cache_duration = 'none'
