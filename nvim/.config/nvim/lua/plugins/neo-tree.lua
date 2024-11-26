@@ -8,10 +8,18 @@ return {
         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     config = function()
-        require('neo-tree').setup()
+        require('neo-tree').setup({
+            filesystem = {
+                filtered_items = {
+                    hide_dotfiles = false,
+                    hide_gitignored = false
+                }
+            }
+        })
 
         vim.keymap.set('n', '<leader>1', '<cmd>Neotree toggle reveal<cr>', { desc = 'Show file tree' })
-        vim.keymap.set('n', '<leader>2', '<cmd>Neotree current reveal<cr>', { desc = 'Show file tree in a current window' })
+        vim.keymap.set('n', '<leader>2', '<cmd>Neotree current reveal<cr>',
+            { desc = 'Show file tree in a current window' })
         vim.keymap.set('n', '<leader>3', '<cmd>Neotree current buffers reveal<cr>', { desc = 'Show file tree' })
     end,
 }

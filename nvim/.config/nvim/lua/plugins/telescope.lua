@@ -18,10 +18,12 @@ return {
             require('telescope').setup {
                 defaults = {
                     layout_strategy = 'vertical',
+                    file_ignore_patterns = { "^.git/" }
                 },
                 pickers = {
                     find_files = {
                         -- theme = 'dropdown',
+                        hidden = true
 
                     },
                     live_grep = {
