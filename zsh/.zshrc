@@ -107,6 +107,21 @@ dotnetsecrets(){
   echo "Opening $secrets"
   nvim ~/.microsoft/usersecrets/$uuid/secrets.json
 }
+crun() {
+    if [[ -z "$1" ]]; then
+        file="main.c"
+    else
+        file=$1
+    fi
+
+    output=$(basename $file ".c")
+
+    echo "Compiling '$file' into '$output'"
+    gcc -o $output $file || return
+    
+    echo "Running '$output'"
+    ./$output
+}
 
 # Extra env
 export TERM="xterm-256color"
