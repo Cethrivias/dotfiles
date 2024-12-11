@@ -1,4 +1,4 @@
---  This function gets run when an LSP connects to a particular buffer.
+--  This function gets run when an LSP connects to a particular buffer.lspc
 local on_attach = function(_, bufnr)
     -- NOTE: Remember that lua is a real programming language, and as such it is possible
     -- to define small helper and utility functions so you don't have to repeat yourself
@@ -46,10 +46,10 @@ local servers = {
     -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
-    -- tsserver = {},
     -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
-    templ = {},
+    templ = { autostart = false },
+    tailwindcss = { autostart = false },
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
@@ -57,6 +57,17 @@ local servers = {
             -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             -- diagnostics = { disable = { 'missing-fields' } },
         },
+    },
+    denols = {
+        root_dir = function()
+            return require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')
+        end,
+    },
+    tsserver = {
+        root_dir = function()
+            return require('lspconfig').util.root_pattern 'package.json'
+        end,
+        single_file_support = false,
     },
 }
 
@@ -75,12 +86,27 @@ return {
             capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
             require('mason').setup()
-            require('mason-lspconfig').setup { ensure_installed = { 'lua_ls', 'gopls', 'tsserver' } }
+            require('mason-lspconfig').setup { ensure_installed = { 'lua_ls', 'gopls' } }
             require('mason-lspconfig').setup_handlers {
                 function(server_name)
+                    local root_dir
+                    local autostart = true
+                    if servers[server_name] then
+                        local server = servers[server_name]
+
+                        if server.root_dir ~= nil then
+                            root_dir = servers[server_name].root_dir()
+                        end
+
+                        if server.autostart ~= nil then
+                            autostart = servers[server_name].autostart
+                        end
+                    end
                     require('lspconfig')[server_name].setup {
                         capabilities = capabilities,
                         on_attach = on_attach,
+                        root_dir = root_dir,
+                        autostart = autostart,
                         settings = servers[server_name],
                         filetypes = (servers[server_name] or {}).filetypes,
                     }

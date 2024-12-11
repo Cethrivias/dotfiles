@@ -120,7 +120,7 @@ crun() {
     gcc -o $output $file || return
     
     echo "Running '$output'"
-    ./$output
+    ./$output "${@:2}"
 }
 
 # Extra env
