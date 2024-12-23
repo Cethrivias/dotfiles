@@ -12,11 +12,11 @@ vim.opt.autoindent = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.listchars = "eol:↴,tab:> ,nbsp:+,extends:>,precedes:<,space:·"
+vim.opt.listchars = 'eol:↴,tab:> ,nbsp:+,extends:>,precedes:<,space:·'
 
 vim.opt.spell = true
-vim.opt.spelloptions = "camel"
-vim.opt.spellcapcheck = ""
+vim.opt.spelloptions = 'camel'
+vim.opt.spellcapcheck = ''
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -76,11 +76,12 @@ vim.o.completeopt = 'menuone,noselect'
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking (Copying) text',
     callback = function()
         vim.highlight.on_yank()
     end,
     group = highlight_group,
-    pattern = '*',
+    -- pattern = '*',
 })
 
 -- [[ Filetypes ]]

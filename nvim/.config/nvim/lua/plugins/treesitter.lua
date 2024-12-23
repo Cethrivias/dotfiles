@@ -1,3 +1,7 @@
+-- Tricks:
+-- :Inspect to check what treesitter thinks about what is currently under cursor
+-- :InspectTree see the matrix
+
 local langs = {
     'bash',
     'c',
@@ -26,7 +30,7 @@ local langs = {
 
 local function add_queries()
     local queries = '; inherits: %s\n\n(identifier) @spell'
-    local queries_dir = vim.fn.stdpath('config') .. '/after/queries/'
+    local queries_dir = vim.fn.stdpath 'config' .. '/after/queries/'
 
     for _, lang in ipairs(langs) do
         local path = queries_dir .. lang .. '/highlights.scm'

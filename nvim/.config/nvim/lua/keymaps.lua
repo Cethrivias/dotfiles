@@ -28,3 +28,8 @@ vim.keymap.set('n', '<leader>tn', ':tabnew<cr>', { desc = 'New tab' })
 vim.keymap.set('n', '<leader>tq', ':tabclose<cr>', { desc = 'Close tab' })
 vim.keymap.set('n', '<leader>th', ':tabn<cr>', { desc = 'Previous tab' })
 vim.keymap.set('n', '<leader>tl', ':tabp<cr>', { desc = 'Next tab' })
+
+-- Weird debugging magic
+vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>', { desc = 'Source current file' })
+vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'Source current line' })
+vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current line' })

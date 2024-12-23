@@ -2,16 +2,16 @@ return {
     {
         'projekt0n/github-nvim-theme',
         name = 'github-theme',
-        opts = {}
+        opts = {},
     },
-    -- {
-    --     'navarasu/onedark.nvim',
-    --     opts = { style = 'darker' },
-    -- },
-    -- {
-    --     'folke/tokyonight.nvim',
-    --     opts = {},
-    -- },
+    {
+        'navarasu/onedark.nvim',
+        opts = { style = 'warmer' }, -- dark, darker, cool, deep, warm, warmer
+    },
+    {
+        'folke/tokyonight.nvim',
+        opts = {},
+    },
     {
         'catppuccin/nvim',
         name = 'catppuccin',

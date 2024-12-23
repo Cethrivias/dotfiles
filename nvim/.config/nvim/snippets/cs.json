@@ -1,0 +1,27 @@
+{
+    "Async Test": {
+        "prefix": "testa",
+        "body": [
+            "[Test]",
+            "public async Task ${1}()",
+            "{",
+            "    // Arrange",
+            "    ${2}",
+            "    // Act",
+            "    // Assert",
+            "}"
+        ]
+    },
+    "Arrange Act Assert": {
+        "prefix": "aaa",
+        "body": [
+            "// Arrange",
+            "// Act",
+            "// Assert"
+        ]
+    },
+    "New GUID": {
+        "prefix": "newguid",
+        "body": "Guid.NewGuid()"
+    }
+}
