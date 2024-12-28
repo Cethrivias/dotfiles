@@ -1,0 +1,11 @@
+theme = catppuccin-mocha
+
+font-family = JetBrainsMonoNL Nerd Font Mono
+font-size = 16
+
+fullscreen = true
+confirm-close-surface = false
+
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
