@@ -3,9 +3,15 @@
 ## Stow
 
 ```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 brew install stow
 brew install oh-my-posh
 brew install zinit
+
+# or
+
+brew bundle install
 ```
 
 # Installation
@@ -13,6 +19,7 @@ brew install zinit
 ```shell
 stow alacritty
 stow kitty
+stow ghostty
 stow mc
 stow nvim
 stow tmux
