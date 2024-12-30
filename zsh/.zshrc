@@ -62,6 +62,10 @@ bindkey -M emacs "^[3;5~" delete-char
 bindkey -M viins "^[3;5~" delete-char
 bindkey -M vicmd "^[3;5~" delete-char
 
+# autoload edit-command-line; zle -N edit-command-line
+# bindkey -M vicmd "^E" edit-command-line
+# bindkey -M emacs "^E" edit-command-line
+# bindkey -M viins "^E" edit-command-line
 
 # Aliases
 alias nv=nvim
