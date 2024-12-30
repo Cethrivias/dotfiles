@@ -9,3 +9,6 @@ confirm-close-surface = false
 window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
+
+keybind = super+equal=increase_font_size:.5
+keybind = super+minus=decrease_font_size:.5
