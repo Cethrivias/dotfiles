@@ -12,3 +12,7 @@ window-padding-balance = true
 
 keybind = super+equal=increase_font_size:.5
 keybind = super+minus=decrease_font_size:.5
+
+# MacOS
+window-colorspace = display-p3
+# macos-titlebar-style = transparent
