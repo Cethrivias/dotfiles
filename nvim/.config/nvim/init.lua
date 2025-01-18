@@ -32,3 +32,5 @@ vim.cmd.colorscheme 'onedark'
 vim.cmd.colorscheme 'github_dark_default'
 vim.cmd.colorscheme 'github_light'
 --]]
+
+vim.g.zig_fmt_autosave = 0
