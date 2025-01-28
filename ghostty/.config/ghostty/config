@@ -1,7 +1,12 @@
 theme = catppuccin-mocha
 
 font-family = JetBrainsMonoNL Nerd Font Mono
+# font-family = MesloLGS Nerd Font Mono
 font-size = 16
+# font-thicken = true
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 fullscreen = true
 confirm-close-surface = false
