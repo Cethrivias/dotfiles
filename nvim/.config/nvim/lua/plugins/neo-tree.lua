@@ -9,6 +9,11 @@ return {
     },
     config = function()
         require('neo-tree').setup {
+            window = {
+                mappings = {
+                    ["b"] = "noop"
+                }
+            },
             filesystem = {
                 filtered_items = {
                     hide_dotfiles = false,

@@ -30,7 +30,7 @@ local on_attach = function(client, bufnr)
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
     nmap('gr', t_configure(tb.lsp_references), '[G]oto [R]eferences')
-    nmap('gI', t_configure(tb.lsp_implementations), '[G]oto [I]mplementation')
+    nmap('gi', t_configure(tb.lsp_implementations), '[G]oto [I]mplementation')
     nmap('<leader>D', t_configure(tb.lsp_type_definitions), 'Type [D]efinition')
     nmap('<leader>ds', t_configure(tb.lsp_document_symbols), '[D]ocument [S]ymbols')
     nmap('<leader>ws', t_configure(tb.lsp_dynamic_workspace_symbols), '[W]orkspace [S]ymbols')
@@ -50,9 +50,13 @@ local on_attach = function(client, bufnr)
     end, { desc = 'Format current buffer with LSP' })
 
     if client.name == 'omnisharp' then
-        -- TODO: There is a way to configure definitions properly
-        print 'retard lang detected'
-        nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        print 'loading csharp custom mappings'
+        -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        local cs = require('omnisharp_extended')
+        nmap('gr', t_configure(cs.telescope_lsp_references), '(CS) [G]oto [R]eferences')
+        nmap('gd', t_configure(cs.telescope_lsp_definition), '(CS) [G]oto [D]efinition')
+        nmap('<leader>D', t_configure(cs.telescope_lsp_type_definition), '(CS) Type [D]efinition')
+        nmap('gi', t_configure(cs.telescope_lsp_implementation), '(CS) [G]oto [I]mplementation')
     else
         nmap('gd', t_configure(tb.lsp_definitions), '[G]oto [D]efinition')
 
@@ -97,6 +101,24 @@ local servers = {
         end,
         single_file_support = false,
     },
+    omnisharp = {
+        settings = {
+            -- All settings: https://github.com/OmniSharp/omnisharp-roslyn/wiki/Configuration-Options
+            FormattingOptions = {
+                EnableEditorConfigSupport = true,
+                OrganizeImports = true,
+            },
+            MsBuild = {
+                loadProjectsOnDemand = nil,
+            },
+            RoslynExtensionsOptions = {
+                enableDecompilationSupport = true,
+                enableImportCompletion = true,
+                enableAnalyzersSupport = true,
+                AnalyzeOpenDocumentsOnly = true
+            },
+        }
+    }
 }
 
 return {

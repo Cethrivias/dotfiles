@@ -24,7 +24,8 @@ require 'keymaps'
 require 'startup'
 require 'typocmds'
 
-vim.cmd.colorscheme 'catppuccin'
+vim.cmd.colorscheme 'catppuccin-mocha'
+-- vim.cmd.colorscheme 'catppuccin-latte'
 --[[
 vim.cmd.colorscheme 'tokyonight'
 vim.cmd.colorscheme 'tokyonight-night'

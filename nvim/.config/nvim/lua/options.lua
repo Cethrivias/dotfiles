@@ -91,4 +91,8 @@ vim.filetype.add {
         tfvars = 'terraform',
         templ = 'templ',
     },
+    filename = {
+        ['Directory.Build.props'] = 'xml',
+        ['Directory.Build.targets'] = 'xml',
+    }
 }
