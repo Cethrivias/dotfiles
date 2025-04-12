@@ -36,7 +36,7 @@ local on_attach = function(client, bufnr)
     nmap('<leader>ws', t_configure(tb.lsp_dynamic_workspace_symbols), '[W]orkspace [S]ymbols')
     nmap('<leader>f', vim.lsp.buf.format, '[F]ormat')
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation') conflicts with tmux-navigator
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
     nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
@@ -122,6 +122,7 @@ local servers = {
 }
 
 return {
+    { 'Hoffs/omnisharp-extended-lsp.nvim' },
     {
         'neovim/nvim-lspconfig',
         dependencies = {

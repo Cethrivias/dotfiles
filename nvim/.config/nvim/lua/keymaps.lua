@@ -1,3 +1,10 @@
+-- [[ Removing default keymaps ]]
+vim.keymap.del('n', 'gra')
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'gO')
+vim.keymap.del('n', 'grn')
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience

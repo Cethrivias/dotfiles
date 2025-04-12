@@ -11,6 +11,11 @@ return {
         -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
         -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
         -- See the full "keymap" documentation for information on defining your own keymap.
+        cmdline = {
+            keymap = {
+                ['<CR>'] = {},
+            },
+        },
         keymap = {
             preset = 'default',
 
@@ -21,9 +26,6 @@ return {
             ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
 
             ['<CR>'] = { 'select_and_accept', 'fallback' },
-            cmdline = {
-                ['<CR>'] = {},
-            },
         },
 
         appearance = {

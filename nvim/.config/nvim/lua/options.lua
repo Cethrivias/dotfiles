@@ -96,3 +96,7 @@ vim.filetype.add {
         ['Directory.Build.targets'] = 'xml',
     }
 }
+
+-- vim.diagnostic.config({ virtual_text = true })
+-- vim.diagnostic.config({ virtual_text = { current_line = true } })
+vim.diagnostic.config({ virtual_lines = { current_line = true } })
