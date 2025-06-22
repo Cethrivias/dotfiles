@@ -8,12 +8,14 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
-fullscreen = true
+fullscreen = false
+# window-decoration = none
+macos-titlebar-style = hidden
 confirm-close-surface = false
 
 window-padding-x = 0
-window-padding-y = 0
-window-padding-balance = true
+window-padding-y = 3,0
+window-padding-balance = false
 
 keybind = super+equal=increase_font_size:.5
 keybind = super+minus=decrease_font_size:.5
