@@ -52,7 +52,7 @@ local on_attach = function(client, bufnr)
     if client.name == 'omnisharp' then
         print 'loading csharp custom mappings'
         -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-        local cs = require('omnisharp_extended')
+        local cs = require 'omnisharp_extended'
         nmap('gr', t_configure(cs.telescope_lsp_references), '(CS) [G]oto [R]eferences')
         nmap('gd', t_configure(cs.telescope_lsp_definition), '(CS) [G]oto [D]efinition')
         nmap('<leader>D', t_configure(cs.telescope_lsp_type_definition), '(CS) Type [D]efinition')
@@ -115,10 +115,10 @@ local servers = {
                 enableDecompilationSupport = true,
                 enableImportCompletion = true,
                 enableAnalyzersSupport = true,
-                AnalyzeOpenDocumentsOnly = true
+                AnalyzeOpenDocumentsOnly = true,
             },
-        }
-    }
+        },
+    },
 }
 
 return {
@@ -137,8 +137,8 @@ return {
                     },
                 },
             }, -- nvim types
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
+            { 'mason-org/mason.nvim',           version = 'v1.x' },
+            { 'mason-org/mason-lspconfig.nvim', version = 'v1.x' },
             'j-hui/fidget.nvim', -- lsp status updates
             'saghen/blink.cmp',
         },
@@ -150,6 +150,7 @@ return {
 
             require('mason').setup()
             require('mason-lspconfig').setup {
+                automatic_enable = false,
                 ensure_installed = { 'lua_ls', 'gopls' },
                 automatic_installation = false,
             }
