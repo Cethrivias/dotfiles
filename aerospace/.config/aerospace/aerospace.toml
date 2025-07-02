@@ -117,6 +117,8 @@ automatically-unhide-macos-hidden-apps = true
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
 
+    alt-period = 'fullscreen'
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
