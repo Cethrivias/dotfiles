@@ -5,27 +5,18 @@
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew install stow
-brew install oh-my-posh
-brew install zinit
-brew tap FelixKratz/formulae
-brew install borders
-
-# or
-
 brew bundle install
 ```
 
 # Installation
 
 ```shell
-stow alacritty
-stow kitty
 stow ghostty
 stow mc
 stow nvim
 stow tmux
 stow zsh
+stow aerospace
 ```
 
 # Other setup
