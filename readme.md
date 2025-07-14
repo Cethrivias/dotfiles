@@ -8,6 +8,8 @@
 brew install stow
 brew install oh-my-posh
 brew install zinit
+brew tap FelixKratz/formulae
+brew install borders
 
 # or
 
