@@ -12,7 +12,7 @@ after-login-command = []
 after-startup-command = [
     # JankyBorders has a built-in detection of already running process,
     # so it won't be run twice on AeroSpace restart
-    'exec-and-forget borders active_color=0xffda6cfc inactive_color=0xff494d64 width=5.0'
+    'exec-and-forget borders'
 ]
 
 # Start AeroSpace at login
@@ -212,6 +212,8 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
+
+    alt-shift-b = ['exec-and-forget borders', 'mode main']
 
     down = 'volume down'
     up = 'volume up'
