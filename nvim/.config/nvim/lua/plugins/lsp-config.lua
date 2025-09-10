@@ -92,6 +92,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 return {
     { 'Hoffs/omnisharp-extended-lsp.nvim' },
     {
+        "seblyng/roslyn.nvim",
+        ---@module 'roslyn.config'
+        ---@type RoslynNvimConfig
+        opts = {
+            -- your configuration comes here; leave empty for default settings
+        },
+    },
+    {
         'neovim/nvim-lspconfig',
         dependencies = {
             {
@@ -111,7 +119,12 @@ return {
         },
         config = function()
             require('fidget').setup {}
-            require('mason').setup()
+            require('mason').setup {
+                registries = {
+                    "github:mason-org/mason-registry",
+                    "github:Crashdummyy/mason-registry",
+                },
+            }
             require('mason-lspconfig').setup {
                 automatic_enable = true,
                 ensure_installed = { 'lua_ls', 'gopls' },
