@@ -45,22 +45,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         if client.name == 'omnisharp' then
             print 'loading csharp custom mappings'
-            -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
             local cs = require 'omnisharp_extended'
             nmap('gr', t_configure(cs.telescope_lsp_references), '(CS) [G]oto [R]eferences')
             nmap('gd', t_configure(cs.telescope_lsp_definition), '(CS) [G]oto [D]efinition')
             nmap('gi', t_configure(cs.telescope_lsp_implementation), '(CS) [G]oto [I]mplementation')
         else
+            -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
             nmap('gd', t_configure(tb.lsp_definitions), '[G]oto [D]efinition')
-
-            if client:supports_method 'textDocument/formatting' then
-                vim.api.nvim_create_autocmd('BufWritePre', {
-                    buffer = bufnr,
-                    callback = function()
-                        vim.lsp.buf.format { bufnr = bufnr, id = client.id }
-                    end,
-                })
-            end
         end
 
         -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
