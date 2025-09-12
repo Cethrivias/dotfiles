@@ -16,10 +16,14 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+local function go_to_diag(direction)
+    return function()
+        vim.diagnostic.jump { count = direction, float = true }
+    end
+end
+
+vim.keymap.set('n', '[d', go_to_diag(1), { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', go_to_diag(-1), { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>q', '<cmd>Telescope diagnostics<cr>', { desc = 'Open diagnostics list' })
 
 vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv", { desc = 'Move selection down' })

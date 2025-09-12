@@ -4,9 +4,9 @@ return {
         name = 'github-theme',
         opts = {},
     }, {
-    'navarasu/onedark.nvim',
-    opts = { style = 'warmer' },     -- dark, darker, cool, deep, warm, warmer
-},
+        'navarasu/onedark.nvim',
+        opts = { style = 'warmer' }, -- dark, darker, cool, deep, warm, warmer
+    },
     {
         'folke/tokyonight.nvim',
         opts = {},
@@ -32,5 +32,8 @@ return {
     },
     {
         'shaunsingh/nord.nvim'
+    },
+    {
+        'morhetz/gruvbox'
     }
 }

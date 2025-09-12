@@ -48,6 +48,17 @@ return {
 
         completion = {
             documentation = { auto_show = true },
+            ghost_text = { enabled = true },
+            menu = {
+                draw = {
+                    columns = {
+                        -- { "label",      "label_description", gap = 1 },
+                        { "label" },
+                        { "kind_icon",  "kind", gap = 1 },
+                        { "source_name" }
+                    },
+                }
+            }
         },
     },
     opts_extend = { 'sources.default' },

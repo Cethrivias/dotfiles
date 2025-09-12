@@ -40,6 +40,7 @@ vim.opt.colorcolumn = '120'
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'line'
 vim.opt.wrap = false
+vim.o.winborder = 'rounded'
 
 -- split
 vim.opt.splitright = true
@@ -98,5 +99,10 @@ vim.filetype.add {
 }
 
 -- vim.diagnostic.config({ virtual_text = true })
-vim.diagnostic.config({ virtual_text = { current_line = true } })
+vim.diagnostic.config({
+    -- virtual_text = true,
+    -- virtual_lines = { current_line = true },
+    virtual_text = { current_line = true },
+    underline = false,
+})
 -- vim.diagnostic.config({ virtual_lines = { current_line = true } })
