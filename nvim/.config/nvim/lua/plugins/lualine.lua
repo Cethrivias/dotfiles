@@ -8,6 +8,7 @@ return {
             },
             sections = {
                 lualine_x = {
+                    -- 'lsp_status', does not work with gitlab lsp enabled
                     'filetype', --[[ 'fileformat', ]]
                     'encoding',
                 },

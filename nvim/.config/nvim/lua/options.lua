@@ -88,6 +88,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- [[ Filetypes ]]
 vim.filetype.add {
     extension = {
+        cs = 'csharp',
         tf = 'terraform',
         tfvars = 'terraform',
         templ = 'templ',

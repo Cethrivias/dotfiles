@@ -121,6 +121,8 @@ return {
                 ensure_installed = { 'lua_ls', 'gopls' },
                 automatic_installation = false,
             }
+
+            vim.lsp.config('roslyn', { filetypes = { 'cs', 'csharp' } })
         end,
     },
 }
