@@ -1,3 +1,20 @@
+--- @param buffer integer Buffer id
+local csharpier = function(buffer)
+    local name = vim.api.nvim_buf_get_name(buffer)
+    local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
+    local cmd = { 'csharpier', 'format', '--write-stdout' }
+    if name ~= "" then
+        vim.list_extend(cmd, { '--stdin-path', name })
+    end
+    local res = vim.system(cmd, { text = true, stdin = lines, timeout = 1000 }):wait()
+    if res.code ~= 0 then
+        vim.notify('csharpier: ' .. res.stderr, vim.log.levels.ERROR)
+        return
+    end
+
+    vim.api.nvim_buf_set_lines(buffer, 0, -1, false, vim.split(res.stdout, '\n'))
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
@@ -34,7 +51,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         nmap('gi', t_configure(tb.lsp_implementations), '[G]oto [I]mplementation')
         nmap('<leader>ds', t_configure(tb.lsp_document_symbols), '[D]ocument [S]ymbols')
         nmap('<leader>ws', t_configure(tb.lsp_dynamic_workspace_symbols), '[W]orkspace [S]ymbols')
-        nmap('<leader>f', vim.lsp.buf.format, '[F]ormat')
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
@@ -49,9 +65,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
             nmap('gr', t_configure(cs.telescope_lsp_references), '(CS) [G]oto [R]eferences')
             nmap('gd', t_configure(cs.telescope_lsp_definition), '(CS) [G]oto [D]efinition')
             nmap('gi', t_configure(cs.telescope_lsp_implementation), '(CS) [G]oto [I]mplementation')
+            nmap('<leader>f', function() csharpier(bufnr) end, '[F]ormat with CSharpier')
+        elseif client.name == 'roslyn' then
+            nmap('<leader>f', function() csharpier(bufnr) end, '[F]ormat with CSharpier')
         else
             -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
             nmap('gd', t_configure(tb.lsp_definitions), '[G]oto [D]efinition')
+            nmap('<leader>f', vim.lsp.buf.format, '[F]ormat')
         end
 
         -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
