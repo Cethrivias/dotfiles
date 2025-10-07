@@ -48,6 +48,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
         nmap('gr', t_configure(tb.lsp_references), '[G]oto [R]eferences')
+        -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        nmap('gd', t_configure(tb.lsp_definitions), '[G]oto [D]efinition')
         nmap('gi', t_configure(tb.lsp_implementations), '[G]oto [I]mplementation')
         nmap('<leader>ds', t_configure(tb.lsp_document_symbols), '[D]ocument [S]ymbols')
         nmap('<leader>ws', t_configure(tb.lsp_dynamic_workspace_symbols), '[W]orkspace [S]ymbols')
@@ -69,9 +71,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         elseif client.name == 'roslyn' then
             nmap('<leader>f', function() csharpier(bufnr) end, '[F]ormat with CSharpier')
         else
-            -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-            nmap('gd', t_configure(tb.lsp_definitions), '[G]oto [D]efinition')
-            nmap('<leader>f', vim.lsp.buf.format, '[F]ormat')
+            if client:supports_method 'textDocument/formatting' then
+                nmap('<leader>f', vim.lsp.buf.format, '[F]ormat')
+            end
         end
 
         -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|

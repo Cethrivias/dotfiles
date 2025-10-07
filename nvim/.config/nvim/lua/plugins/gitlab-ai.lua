@@ -3,7 +3,7 @@ return {
     -- Activate when a file is created/opened
     event = { 'BufReadPre', 'BufNewFile' },
     -- Activate when a supported filetype is open
-    ft = { 'csharp', 'go' },
+    ft = { 'cs', 'go' },
     cond = function()
         -- Only activate if token is present in environment variable.
         -- Remove this line to use the interactive workflow.
@@ -18,12 +18,12 @@ return {
             enabled = true,
             -- For the full list of default languages, see the 'auto_filetypes' array in
             -- https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim/-/blob/main/lua/gitlab/config/defaults.lua
-            auto_filetypes = { 'csharp', 'go' }, -- Default is { 'ruby' }
+            auto_filetypes = { 'cs', 'go' }, -- Default is { 'ruby' }
             ghost_text = {
-                enabled = true,           -- ghost text is an experimental feature
+                enabled = true,                  -- ghost text is an experimental feature
                 accept_suggestion = "<C-l>",
                 clear_suggestions = "<C-k>",
-                stream = true,
+                stream = false,
             },
         }
     },
