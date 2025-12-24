@@ -7,7 +7,8 @@ return {
     cond = function()
         -- Only activate if token is present in environment variable.
         -- Remove this line to use the interactive workflow.
-        return vim.env.GITLAB_TOKEN ~= nil and vim.env.GITLAB_TOKEN ~= ''
+        -- return vim.env.GITLAB_TOKEN ~= nil and vim.env.GITLAB_TOKEN ~= ''
+        return false
     end,
     opts = {
         statusline = {
@@ -20,7 +21,7 @@ return {
             -- https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim/-/blob/main/lua/gitlab/config/defaults.lua
             auto_filetypes = { 'cs', 'go' }, -- Default is { 'ruby' }
             ghost_text = {
-                enabled = true,                  -- ghost text is an experimental feature
+                enabled = true,              -- ghost text is an experimental feature
                 accept_suggestion = "<C-l>",
                 clear_suggestions = "<C-k>",
                 stream = false,
