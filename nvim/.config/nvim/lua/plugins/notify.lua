@@ -4,7 +4,7 @@ return {
         local notify = require('notify')
         notify.setup {
             merge_duplicates = false,
-            render = "compact",
+            render = "wrapped-compact",
             stages = "fade"
         }
         vim.notify = require('notify')

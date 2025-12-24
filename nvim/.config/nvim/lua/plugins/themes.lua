@@ -4,9 +4,9 @@ return {
         name = 'github-theme',
         opts = {},
     }, {
-        'navarasu/onedark.nvim',
-        opts = { style = 'warmer' }, -- dark, darker, cool, deep, warm, warmer
-    },
+    'navarasu/onedark.nvim',
+    opts = { style = 'warmer' }, -- dark, darker, cool, deep, warm, warmer
+},
     {
         'folke/tokyonight.nvim',
         opts = {},
@@ -17,7 +17,11 @@ return {
         priority = 1000,
         config = function()
             require('catppuccin').setup {
-                transparent_background = true,
+                transparent_background = false,
+                background = { -- :h background
+                    light = "latte",
+                    dark = "mocha",
+                },
                 highlight_overrides = {
                     all = function(colors)
                         return {
