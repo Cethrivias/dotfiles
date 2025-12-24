@@ -136,27 +136,12 @@ export PATH="$PATH:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/bin"
 bindkey -e # emacs style
 
 # EXPERIMENTAL
-function newworktree() {
-    task=$1
-    dir=`basename $(pwd)`
-    worktree_path="$HOME/Projects/tasks/$task/$dir"
-    if [ -d "$worktree_path" ]; then
-        echo "Changing directory to: $worktree_path"
-        cd $worktree_path
-        return
-    fi
-
-    echo "Creating new worktree at: $worktree_path"
-    if [ -n "$(git branch --list $task)" ]; then
-        echo "Branch exists"
-        git worktree add $worktree_path $task
-    else
-        echo "Branch does not exist"
-        git worktree add $worktree_path -b $task
-    fi
-
-    echo "Changing directory to: $worktree_path"
-    cd $worktree_path
+function y () {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -i -f -- "$tmp"
 }
 
 # Sourcing private scripts
