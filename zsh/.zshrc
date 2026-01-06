@@ -62,10 +62,38 @@ bindkey -M emacs "^[3;5~" delete-char
 bindkey -M viins "^[3;5~" delete-char
 bindkey -M vicmd "^[3;5~" delete-char
 
-# autoload edit-command-line; zle -N edit-command-line
+# bindkey -e # emacs style
+bindkey -v
+export KEYTIMEOUT=1
+bindkey '^?' backward-delete-char
+
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+
+_set_cursor_beam() {
+   echo -ne '\e[5 q'
+}
+
+# Use beam shape cursor on startup.
+precmd_functions+=(_set_cursor_beam)
+
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^V' edit-command-line
 # bindkey -M vicmd "^E" edit-command-line
 # bindkey -M emacs "^E" edit-command-line
 # bindkey -M viins "^E" edit-command-line
+
 
 # Aliases
 alias nv=nvim
@@ -76,6 +104,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias dt='dotnet test --logger "console;verbosity=normal"'
 alias dtf='dotnet test --logger "console;verbosity=normal" --filter'
+alias dbe='dotnet build | grep --color=always " error "'
 alias dwatch='dotnet watch build --project'
 alias javals="/usr/libexec/java_home -V"
 alias dockertop="docker ps --format '{{ .Names }}' | docker stats"
@@ -131,9 +160,6 @@ crun() {
 # Extra env
 export TERM="xterm-256color"
 export PATH="$PATH:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/bin"
-
-# Keybindings
-bindkey -e # emacs style
 
 # EXPERIMENTAL
 function y () {
