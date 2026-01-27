@@ -56,24 +56,26 @@ vim.api.nvim_create_autocmd('LspAttach', {
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-        -- Create a command `:Format` local to the LSP buffer
-        vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-            vim.lsp.buf.format()
-        end, { desc = 'Format current buffer with LSP' })
-
-        if client.name == 'omnisharp' then
-            print 'loading csharp custom mappings'
-            local cs = require 'omnisharp_extended'
-            nmap('gr', t_configure(cs.telescope_lsp_references), '(CS) [G]oto [R]eferences')
-            nmap('gd', t_configure(cs.telescope_lsp_definition), '(CS) [G]oto [D]efinition')
-            nmap('gi', t_configure(cs.telescope_lsp_implementation), '(CS) [G]oto [I]mplementation')
-            nmap('<leader>f', function() csharpier(bufnr) end, '[F]ormat with CSharpier')
-        elseif client.name == 'roslyn' then
+        -- if client.name == 'omnisharp' then
+        --     print 'loading csharp custom mappings'
+        --     local cs = require 'omnisharp_extended'
+        --     nmap('gr', t_configure(cs.telescope_lsp_references), '(CS) [G]oto [R]eferences')
+        --     nmap('gd', t_configure(cs.telescope_lsp_definition), '(CS) [G]oto [D]efinition')
+        --     nmap('gi', t_configure(cs.telescope_lsp_implementation), '(CS) [G]oto [I]mplementation')
+        --     nmap('<leader>f', function() csharpier(bufnr) end, '[F]ormat with CSharpier')
+        -- else
+        if client.name == 'roslyn' then
             nmap('<leader>f', function() csharpier(bufnr) end, '[F]ormat with CSharpier')
         else
             if client:supports_method 'textDocument/formatting' then
-                nmap('<leader>f', vim.lsp.buf.format, '[F]ormat')
+                nmap('<leader>f', function() vim.lsp.buf.format { bufnr = bufnr, id = client.id } end,
+                    '[F]ormat current buffer with LSP')
             end
+
+            -- Create a command `:Format` local to the LSP buffer
+            vim.api.nvim_buf_create_user_command(bufnr, 'Format',
+                function() vim.lsp.buf.format { bufnr = bufnr, id = client.id } end,
+                { desc = 'Format current buffer with LSP' })
         end
 
         -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
@@ -87,18 +89,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Auto-format ("lint") on save.
         -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-        if
-            not client:supports_method 'textDocument/willSaveWaitUntil'
-            and client:supports_method 'textDocument/formatting'
-        then
-            vim.api.nvim_create_autocmd('BufWritePre', {
-                group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
-                buffer = args.buf,
-                callback = function()
-                    vim.lsp.buf.format { bufnr = args.buf, id = client.id, timeout_ms = 1000 }
-                end,
-            })
-        end
+        -- if
+        --     not client:supports_method 'textDocument/willSaveWaitUntil'
+        --     and client:supports_method 'textDocument/formatting'
+        -- then
+        --     vim.api.nvim_create_autocmd('BufWritePre', {
+        --         group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+        --         buffer = bufnr,
+        --         callback = function()
+        --             vim.lsp.buf.format { bufnr = bufnr, id = client.id, timeout_ms = 1000 }
+        --         end,
+        --     })
+        -- end
     end,
 })
 
@@ -144,7 +146,9 @@ return {
                 automatic_installation = false,
             }
 
-            vim.lsp.config('roslyn', { filetypes = { 'cs', 'csharp' } })
+            vim.lsp.config('roslyn', {
+                --[[ filetypes = { 'cs', 'csharp' } ]]
+            })
         end,
     },
 }
