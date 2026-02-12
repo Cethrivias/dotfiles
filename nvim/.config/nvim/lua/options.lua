@@ -106,3 +106,7 @@ vim.diagnostic.config({
     underline = true,
 })
 -- vim.diagnostic.config({ virtual_lines = { current_line = true } })
+
+-- [[ .NET BS ]]
+vim.g.dotnet_errors_only = true
+vim.g.dotnet_show_project_file = false

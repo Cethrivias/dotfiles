@@ -1,7 +1,6 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        -- branch = '0.1.x',
         branch = 'master',
         dependencies = {
             'nvim-lua/plenary.nvim',
@@ -16,6 +15,11 @@ return {
             },
         },
         config = function()
+            local ivy_theme = require('telescope.themes').get_ivy {
+                fname_width = 50,
+                symbol_width = 30,
+                show_line = false,
+            }
             require('telescope').setup {
                 defaults = {
                     layout_strategy = 'vertical',
@@ -23,17 +27,19 @@ return {
                 },
                 pickers = {
                     find_files = {
-                        -- theme = 'dropdown',
                         hidden = true,
                     },
-                    live_grep = {
-                        -- theme = 'dropdown',
-                    },
+                    lsp_definitions = ivy_theme,
+                    lsp_type_definitions = ivy_theme,
+                    lsp_references = ivy_theme,
+                    lsp_implementations = ivy_theme,
+                    lsp_document_symbols = ivy_theme,
+                    lsp_dynamic_workspace_symbols = ivy_theme,
                 },
             }
 
             local builtin = require 'telescope.builtin'
-            local custom = require("custom.telescope")
+            local custom = require 'custom.telescope'
             vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
             vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
             vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Search Files' })
@@ -45,14 +51,8 @@ return {
             vim.keymap.set('n', '<leader>sg', custom.multi_grep, { desc = '[S]earch by [G]rep' })
             vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
             vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-            vim.keymap.set('n', '<leader>/', function()
-                -- You can pass additional configuration to telescope to change theme, layout, etc.
-                -- builtin.get_dropdown {
-                --     winblend = 10,
-                --     previewer = false,
-                -- })
-                builtin.current_buffer_fuzzy_find()
-            end, { desc = '[/] Fuzzily search in current buffer' })
+            vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find,
+                { desc = '[/] Fuzzily search in current buffer' })
 
             -- Enable telescope fzf native, if installed
             pcall(builtin.load_extension, 'fzf')
