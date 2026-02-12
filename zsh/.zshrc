@@ -109,6 +109,7 @@ alias dwatch='dotnet watch build --project'
 alias javals="/usr/libexec/java_home -V"
 alias dockertop="docker ps --format '{{ .Names }}' | docker stats"
 alias dc="docker compose"
+alias mac-update="brew update && brew upgrade && nvim --headless '+Lazy! sync' '+MasonUpdate' +qa"
 
 # Functions
 lfcd(){
