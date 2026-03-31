@@ -177,3 +177,7 @@ local private_scripts=( "$(find $private_scripts_dir -type f -name '*.zsh' -prin
 for f in "${private_scripts[@]}"; do
    [[ -f $f ]] && source $f
 done 
+
+ulimit -n 10240
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit
