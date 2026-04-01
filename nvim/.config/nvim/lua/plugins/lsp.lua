@@ -1,3 +1,8 @@
+vim.g.zig_fmt_autosave = 0
+-- .net bs
+vim.g.dotnet_errors_only = true
+vim.g.dotnet_show_project_file = false
+
 --- @param buffer integer Buffer id
 local csharpier = function(buffer)
     local name = vim.api.nvim_buf_get_name(buffer)
@@ -33,7 +38,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
         nmap('gr', tb.lsp_references, '[G]oto [R]eferences')
-        -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
         nmap('gd', tb.lsp_definitions, '[G]oto [D]efinition')
         nmap('gt', tb.lsp_type_definitions, '[G]oto [T]ype Definitions')
         nmap('gi', tb.lsp_implementations, '[G]oto [I]mplementation')
@@ -55,77 +59,31 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 function() vim.lsp.buf.format { bufnr = bufnr, id = client.id } end,
                 { desc = 'Format current buffer with LSP' })
         end
-
-        -- Auto-format ("lint") on save.
-        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-        -- if
-        --     not client:supports_method 'textDocument/willSaveWaitUntil'
-        --     and client:supports_method 'textDocument/formatting'
-        -- then
-        --     vim.api.nvim_create_autocmd('BufWritePre', {
-        --         group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
-        --         buffer = bufnr,
-        --         callback = function()
-        --             vim.lsp.buf.format { bufnr = bufnr, id = client.id, timeout_ms = 1000 }
-        --         end,
-        --     })
-        -- end
     end,
 })
 
 return {
+    "seblyng/roslyn.nvim",
     {
-        "seblyng/roslyn.nvim",
-        ---@module 'roslyn.config'
-        ---@type RoslynNvimConfig
+        'mason-org/mason-lspconfig.nvim',
+        version = 'v2.x',
         opts = {
-            -- your configuration comes here; leave empty for default settings
+            ensure_installed = { 'lua_ls', 'gopls' },
         },
-    },
-    {
-        'neovim/nvim-lspconfig',
         dependencies = {
+            { 'mason-org/mason.nvim', version = 'v2.x', opts = {} },
+            'neovim/nvim-lspconfig',
             {
                 'folke/lazydev.nvim',
-                ft = 'lua', -- only load on lua files
+                ft = 'lua',
                 opts = {
                     library = {
                         -- Load luvit types when the `vim.uv` word is found
                         { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
                     },
                 },
-            }, -- nvim types
-            { 'mason-org/mason.nvim',           version = 'v2.x' },
-            { 'mason-org/mason-lspconfig.nvim', version = 'v2.x' },
+            },
             'j-hui/fidget.nvim', -- lsp status updates
-            'saghen/blink.cmp',
         },
-        config = function()
-            require('fidget').setup {}
-            require('mason').setup {
-                registries = {
-                    "github:mason-org/mason-registry",
-                    "github:Crashdummyy/mason-registry",
-                },
-            }
-            require('mason-lspconfig').setup {
-                automatic_enable = true,
-                ensure_installed = { 'lua_ls', 'gopls' },
-                automatic_installation = false,
-            }
-
-            -- vim.lsp.enable('roslyn_ls')
-            -- vim.lsp.config('roslyn_ls', {
-            --     cmd = {
-            --         'roslyn',
-            --         '--logLevel',          -- this property is required by the server
-            --         'Information',
-            --         '--extensionLogDirectory', -- this property is required by the server
-            --         vim.fs.joinpath(vim.uv.os_tmpdir(), 'roslyn_ls/logs'),
-            --         '--stdio',
-            --     }
-            --     -- [[ filetypes = { 'cs', 'csharp' } ]]
-            -- })
-        end,
     },
 }

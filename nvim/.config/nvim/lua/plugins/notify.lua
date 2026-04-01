@@ -7,6 +7,6 @@ return {
             render = "wrapped-compact",
             stages = "fade"
         }
-        vim.notify = require('notify')
+        vim.notify = notify
     end
 }

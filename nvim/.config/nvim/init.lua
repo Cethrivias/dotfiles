@@ -19,10 +19,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup 'plugins'
 
-require 'scripts'
+require 'commands'
+require 'autocommands'
 require 'keymaps'
 require 'startup'
-require 'typocmds'
+require 'diagnostics'
+require 'filetypes'
 
 vim.cmd.colorscheme 'catppuccin'
 -- vim.cmd.colorscheme 'catppuccin-mocha'
@@ -35,4 +37,3 @@ vim.cmd.colorscheme 'github_dark_default'
 vim.cmd.colorscheme 'github_light'
 --]]
 
-vim.g.zig_fmt_autosave = 0

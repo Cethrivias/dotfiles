@@ -4,23 +4,26 @@ return {
         branch = 'master',
         dependencies = {
             'nvim-lua/plenary.nvim',
-            {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                -- NOTE: If you are having trouble with this installation,
-                --       refer to the README for telescope-fzf-native for more instructions.
-                build = 'make',
-                cond = function()
-                    return vim.fn.executable 'make' == 1
-                end,
-            },
+            -- {
+            --     'nvim-telescope/telescope-fzf-native.nvim',
+            --     -- NOTE: If you are having trouble with this installation,
+            --     --       refer to the README for telescope-fzf-native for more instructions.
+            --     build = 'make',
+            --     cond = function()
+            --         return vim.fn.executable 'make' == 1
+            --     end,
+            -- },
+            'nvim-telescope/telescope-ui-select.nvim',
         },
         config = function()
-            local ivy_theme = require('telescope.themes').get_ivy {
+            local telescope = require("telescope")
+            local themes = require("telescope.themes")
+            local ivy_theme = themes.get_ivy {
                 fname_width = 50,
                 symbol_width = 30,
                 show_line = false,
             }
-            require('telescope').setup {
+            telescope.setup {
                 defaults = {
                     layout_strategy = 'vertical',
                     file_ignore_patterns = { '^.git/' },
@@ -35,6 +38,11 @@ return {
                     lsp_implementations = ivy_theme,
                     lsp_document_symbols = ivy_theme,
                     lsp_dynamic_workspace_symbols = ivy_theme,
+                },
+                extensions = {
+                    ['ui-select'] = {
+                        themes.get_dropdown(),
+                    },
                 },
             }
 
@@ -55,22 +63,8 @@ return {
                 { desc = '[/] Fuzzily search in current buffer' })
 
             -- Enable telescope fzf native, if installed
-            pcall(builtin.load_extension, 'fzf')
-        end,
-    },
-    {
-        'nvim-telescope/telescope-ui-select.nvim',
-        config = function()
-            require('telescope').setup {
-                extensions = {
-                    ['ui-select'] = {
-                        require('telescope.themes').get_dropdown {
-                            -- even more opts
-                        },
-                    },
-                },
-            }
-            require('telescope').load_extension 'ui-select'
+            -- pcall(builtin.load_extension, 'fzf')
+            telescope.load_extension 'ui-select'
         end,
     },
 }

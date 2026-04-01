@@ -40,7 +40,7 @@ return {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",
                     -- make lazydev completions top priority (see `:h blink.cmp`)
-                    score_offset = 1,
+                    score_offset = 100
                 },
                 lsp = {
                     async = true,
@@ -65,6 +65,7 @@ return {
                 }
             }
         },
+        fuzzy = { implementation = "prefer_rust_with_warning" }
     },
     opts_extend = { 'sources.default' },
 }

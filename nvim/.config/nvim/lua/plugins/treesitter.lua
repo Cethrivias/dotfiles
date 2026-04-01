@@ -61,7 +61,12 @@ return {
     build = ':TSUpdate',
     lazy = false,
     config = function()
+        require('nvim-treesitter').setup()
         require('nvim-treesitter').install(langs)
+        -- install tree-sitter-cli `brew install tree-sitter-cli`
+        -- because some retard decided that a core feature needs an external dependency
+
+        -- very dirty and bad hacks to get spellchecks on identifiers
         -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
         vim.defer_fn(function()
             add_queries()
