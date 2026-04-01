@@ -110,6 +110,7 @@ alias javals="/usr/libexec/java_home -V"
 alias dockertop="docker ps --format '{{ .Names }}' | docker stats"
 alias dc="docker compose"
 alias mac-update="brew update && brew upgrade && nvim --headless '+Lazy! sync' '+MasonUpdate' +qa"
+alias kc="kubectl"
 
 # Functions
 lfcd(){
@@ -161,6 +162,7 @@ crun() {
 # Extra env
 export TERM="xterm-256color"
 export PATH="$PATH:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/bin"
+export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/nas.yml"
 
 # EXPERIMENTAL
 function y () {
