@@ -489,3 +489,7 @@ bind-key "t" run-shell "sesh connect \"$(
     --preview-window 'right:55%' \
     --preview 'sesh preview {}'
 )\""
+
+set-option -g default-terminal "tmux-direct"
+
+# - ❌ ERROR $TERM should be "screen-256color", "tmux-256color", or "tmux-direct" in tmux. Colors might look wrong.
