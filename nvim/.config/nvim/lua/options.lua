@@ -15,7 +15,14 @@ vim.opt.autoindent = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.listchars = 'eol:↴,tab:> ,nbsp:+,extends:>,precedes:<,space:·'
+local listchars = {
+    'eol: ', -- end of line (↴)
+    'tab:‣ ,leadtab:‣ ', -- tabs (‣ - triangular bullet, ∘ - math ring operator, ▹ - white right-pointing small triangle)
+    'multispace:∙,leadmultispace: ,trail:·', -- spaces (· - math bullet operator)
+    'nbsp:‿,extends:>,precedes:<' -- special (‿ - undertie)
+}
+vim.opt.listchars = table.concat(listchars, ',')
+vim.opt.list = true
 vim.o.breakindent = true
 
 -- spellcheck
@@ -36,6 +43,10 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'line'
 vim.opt.wrap = false
 vim.o.winborder = 'rounded'
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 5
+vim.opt.foldenable = true -- fold everything above foldlevel by default
 
 -- split
 vim.opt.splitright = true

@@ -65,7 +65,7 @@ return {
                 }
             }
         },
-        fuzzy = { implementation = "prefer_rust_with_warning" }
+        fuzzy = { implementation = "prefer_rust_with_warning", prebuilt_binaries = { download = true } }
     },
     opts_extend = { 'sources.default' },
 }
