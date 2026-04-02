@@ -13,7 +13,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
 
 # zinit snippet OMZP::command-not-found
 
@@ -40,10 +39,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|?=**'
 # zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -a --color $realpath'
 setopt GLOB_DOTS # needed to autocomplete hidden directories
 
-eval "$(fzf --zsh)"
 eval $(thefuck --alias)
 
 # Preferred editor for local and remote sessions
@@ -188,3 +185,13 @@ if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init zsh)"
     alias cd=z
 fi
+
+if command -v tv >/dev/null 2>&1; then
+    eval "$(tv init zsh)"
+fi
+
+# fzf integration
+# zinit light Aloxaf/fzf-tab
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -a --color $realpath'
+# eval "$(fzf --zsh)"
+
