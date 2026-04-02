@@ -56,6 +56,16 @@ local function add_queries()
     end
 end
 
+vim.api.nvim_create_autocmd("FileType", {
+    -- pattern = { "go", "gomod", "gowork", "gosum" },
+    callback = function()
+      pcall(vim.treesitter.start)   -- safe call, ignores errors on non-parser filetypes
+      -- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      -- vim.wo[0][0].foldmethod = 'expr'
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+})
+
 return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',

@@ -34,8 +34,8 @@ vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>', { desc = 'Source c
 vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'Source current line' })
 vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Source current line' })
 
--- Navigate vim panes better
-vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
+-- Navigate vim panes better. Replaced by vim-tmux-navigator
+-- vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
+-- vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
+-- vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
+-- vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
