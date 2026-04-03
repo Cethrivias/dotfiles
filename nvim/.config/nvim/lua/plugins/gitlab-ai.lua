@@ -1,3 +1,5 @@
+-- Activating this plugin breaks `lsp_status` in lualine
+
 return {
     'https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim.git',
     -- Activate when a file is created/opened
