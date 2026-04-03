@@ -5,7 +5,8 @@ return {
         notify.setup {
             merge_duplicates = false,
             render = "wrapped-compact",
-            stages = "fade"
+            stages = "fade",
+            background_colour = "#1E1E2E",
         }
         vim.notify = notify
     end

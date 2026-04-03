@@ -37,7 +37,7 @@ vim.opt.wrap = false
 vim.o.winborder = 'rounded'
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevel = 5
+vim.opt.foldlevel = 10
 vim.opt.foldenable = true -- fold everything above foldlevel by default
 local listchars = {
     'eol: ', -- end of line (↴)
