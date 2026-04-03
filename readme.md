@@ -23,3 +23,8 @@ stow aerospace
 
 SSH keys setup is described well in this
 [GitHub page](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+
+# Special characters
+
+- [Nerd Fond](https://www.nerdfonts.com/cheat-sheet)
+- [Unicode](https://symbl.cc/en/search)

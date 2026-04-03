@@ -178,14 +178,17 @@ for f in "${private_scripts[@]}"; do
 done 
 
 ulimit -n 10240
-fpath=(~/.zsh/completions $fpath)
-autoload -U compinit && compinit
 
+# sesh
+fpath=(~/.zsh/completions $fpath)
+
+# zoxide
 if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init zsh)"
     alias cd=z
 fi
 
+# television (tv)
 if command -v tv >/dev/null 2>&1; then
     eval "$(tv init zsh)"
 fi
