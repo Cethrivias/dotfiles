@@ -65,25 +65,35 @@ vim.api.nvim_create_autocmd('LspAttach', {
 return {
     "seblyng/roslyn.nvim",
     {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    {
         'mason-org/mason-lspconfig.nvim',
         version = 'v2.x',
         opts = {
             ensure_installed = { 'lua_ls', 'gopls' },
         },
         dependencies = {
-            { 'mason-org/mason.nvim', version = 'v2.x', opts = {} },
-            'neovim/nvim-lspconfig',
             {
-                'folke/lazydev.nvim',
-                ft = 'lua',
+                'mason-org/mason.nvim',
+                version = 'v2.x',
                 opts = {
-                    library = {
-                        -- Load luvit types when the `vim.uv` word is found
-                        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+                    registries = {
+                        "github:mason-org/mason-registry",
+                        "github:Crashdummyy/mason-registry",
                     },
-                },
+                }
             },
-            'j-hui/fidget.nvim', -- lsp status updates
+            'neovim/nvim-lspconfig',
+            { 'j-hui/fidget.nvim', opts = {} }, -- lsp status updates
         },
     },
 }

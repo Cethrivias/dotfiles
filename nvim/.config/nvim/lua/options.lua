@@ -39,13 +39,7 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 10
 vim.opt.foldenable = true -- fold everything above foldlevel by default
-local listchars = {
-    'eol: ', -- end of line (↴)
-    'tab:‣ ,leadtab:‣ ', -- tabs (‣ - triangular bullet, ∘ - math ring operator, ▹ - white right-pointing small triangle)
-    'multispace:∙,leadmultispace: ,trail:·', -- spaces (· - math bullet operator)
-    'nbsp:‿,extends:>,precedes:<' -- special (‿ - undertie)
-}
-vim.opt.listchars = table.concat(listchars, ',')
+vim.opt.listchars = require('const').listchars
 vim.opt.list = true
 vim.opt.fillchars = {
     eob = " "
