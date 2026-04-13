@@ -1,6 +1,6 @@
 vim.keymap.set(
     'n',
-    '<leader>2',
+    '<leader>5',
     '<cmd>Oil<cr>',
     { desc = 'Show file tree in a current window' }
 )

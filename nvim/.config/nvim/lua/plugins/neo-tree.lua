@@ -30,12 +30,12 @@ return {
         }
 
         vim.keymap.set('n', '<leader>1', '<cmd>Neotree toggle reveal<cr>', { desc = 'Show file tree' })
-        -- vim.keymap.set(
-        --     'n',
-        --     '<leader>2',
-        --     '<cmd>Neotree current reveal<cr>',
-        --     { desc = 'Show file tree in a current window' }
-        -- )
+        vim.keymap.set(
+            'n',
+            '<leader>2',
+            '<cmd>Neotree current reveal<cr>',
+            { desc = 'Show file tree in a current window' }
+        )
         vim.keymap.set('n', '<leader>3', '<cmd>Neotree current buffers reveal<cr>', { desc = 'Show file tree' })
     end,
 }
