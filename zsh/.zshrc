@@ -33,12 +33,23 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+
 # Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|?=**'
-# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} l:|=* r:|=*'
-# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+zstyle ':completion:*' menu select
+bindkey '^[[Z' reverse-menu-complete
+
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|?=**'
 setopt GLOB_DOTS # needed to autocomplete hidden directories
 
 eval $(thefuck --alias)
@@ -90,7 +101,6 @@ bindkey '^V' edit-command-line
 # bindkey -M vicmd "^E" edit-command-line
 # bindkey -M emacs "^E" edit-command-line
 # bindkey -M viins "^E" edit-command-line
-
 
 # Aliases
 alias nv=nvim
