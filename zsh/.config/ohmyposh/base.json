@@ -60,5 +60,10 @@
                 }
             ]
         }
-    ]
+    ],
+    "transient_prompt": {
+        "template": "{{ .PWD }} <magenta>❯</magenta> ",
+        "foreground": "blue",
+        "background": "transparent"
+    }
 }

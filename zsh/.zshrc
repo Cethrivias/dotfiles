@@ -1,8 +1,3 @@
-# Initializing Oh-My-Posh. (Skipping for default mac terminal app)
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.json)"
-fi
-
 # Plugins
 # zinit - package manager for zsh
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -207,4 +202,15 @@ fi
 # zinit light Aloxaf/fzf-tab
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -a --color $realpath'
 # eval "$(fzf --zsh)"
+
+# function starship_transient_prompt_func {
+#     starship module character
+# }
+# export STARSHIP_CONFIG=~/.config/starship/starship.toml
+# eval "$(starship init zsh)"
+
+# Initializing Oh-My-Posh. (Skipping for default mac terminal app)
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.json)"
+fi
 
