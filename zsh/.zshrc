@@ -1,6 +1,6 @@
 # Initializing Oh-My-Posh. (Skipping for default mac terminal app)
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
+  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.json)"
 fi
 
 # Plugins
