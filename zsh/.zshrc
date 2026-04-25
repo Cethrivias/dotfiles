@@ -100,8 +100,9 @@ bindkey '^V' edit-command-line
 # Aliases
 alias nv=nvim
 alias lg=lazygit
-alias ll="ls -Alh --color"
+alias ll="ls -al --group-directories-first"
 alias ls="ls --color"
+alias ls="eza"
 alias ..="cd .."
 alias ...="cd ../.."
 alias dt='dotnet test --logger "console;verbosity=normal"'

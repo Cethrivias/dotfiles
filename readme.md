@@ -2,10 +2,23 @@
 
 ## Stow
 
+## MacOS
+
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew bundle install
+```
+
+### Managing Brewfile
+
+```bash
+# checking for missing dependencies
+brew bundle check -v
+# installing and updating missing dependencies
+brew bundle install
+# update bundle
+brew bundle dump --force
 ```
 
 # Installation
