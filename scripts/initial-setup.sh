@@ -1,6 +1,6 @@
 #!/bin/bash
 
-deps="zen-browser-bin tmux zsh oh-my-posh-bin neovim obsidian git lazygit stow"
+deps="zen-browser-bin tmux zsh oh-my-posh-bin neovim obsidian git lazygit stow thefuck television yazi"
 
 echo """
 === Installing $deps ===
@@ -20,5 +20,3 @@ echo """
 
 git config --global user.email "cethrivias@gmail.com"
 git config --global user.name "cethrivias"
-
-
