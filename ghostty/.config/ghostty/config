@@ -3,7 +3,7 @@ background-opacity = 0.9
 
 font-family = JetBrainsMonoNL Nerd Font Mono
 # font-family = MesloLGS Nerd Font Mono
-font-size = 16
+font-size = 14
 # font-thicken = true
 font-feature = -calt
 font-feature = -liga
