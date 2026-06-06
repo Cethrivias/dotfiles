@@ -1,1 +1,1 @@
-return { 'numToStr/Comment.nvim', opts = {} }
+return { 'nvim-mini/mini.comment', opts = {} }
