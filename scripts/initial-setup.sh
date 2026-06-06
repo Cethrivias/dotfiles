@@ -1,12 +1,12 @@
 #!/bin/bash
 
-deps="zen-browser-bin tmux zsh oh-my-posh-bin neovim obsidian git lazygit stow thefuck television yazi"
+deps="zen-browser-bin tmux zsh oh-my-posh-bin neovim obsidian git lazygit stow thefuck television sesh-bin yazi"
 
 echo """
 === Installing $deps ===
 """
 
-paru -S $deps --noconfirm
+paru -S $deps
 
 echo """
 === Changing default shell to zsh ===

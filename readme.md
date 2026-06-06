@@ -42,6 +42,7 @@ stow -t $HOME yazi
 stow -t $HOME mc
 stow -t $HOME nvim
 stow -t $HOME tmux
+stow -t $HOME television
 stow -t $HOME zsh
 stow -t $HOME aerospace
 stow -t $HOME MangoHud
