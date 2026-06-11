@@ -65,5 +65,11 @@
         "template": "{{ .PWD }} <magenta>❯</magenta> ",
         "foreground": "blue",
         "background": "transparent"
+    },
+    "upgrade": {
+        "auto": false,
+        "notice": false,
+        "interval": "168h",
+        "source": "cdn"
     }
 }
