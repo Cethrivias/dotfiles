@@ -1,0 +1,3 @@
+; inherits: jsx
+
+(identifier) @spell

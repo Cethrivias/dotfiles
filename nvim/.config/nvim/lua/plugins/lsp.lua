@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-        if client.name == 'roslyn' then
+        if client.name == 'roslyn' or client.name == 'roslyn_ls' then
             nmap('<leader>f', function() csharpier(bufnr) end, '[F]ormat with CSharpier')
         else
             if client:supports_method 'textDocument/formatting' then

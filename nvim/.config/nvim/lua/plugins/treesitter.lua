@@ -56,25 +56,41 @@ local function add_queries()
     end
 end
 
-vim.api.nvim_create_autocmd("FileType", {
-    -- pattern = { "go", "gomod", "gowork", "gosum" },
-    callback = function()
-      pcall(vim.treesitter.start)   -- safe call, ignores errors on non-parser filetypes
-      -- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-      -- vim.wo[0][0].foldmethod = 'expr'
-      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     -- pattern = { "go", "gomod", "gowork", "gosum" },
+--     callback = function()
+--         pcall(vim.treesitter.start) -- safe call, ignores errors on non-parser filetypes
+--         -- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+--         -- vim.wo[0][0].foldmethod = 'expr'
+--         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+--     end,
+-- })
 
+-- return {
+--     'nvim-treesitter/nvim-treesitter',
+--     build = ':TSUpdate',
+--     lazy = false,
+--     config = function()
+--         require('nvim-treesitter').setup()
+--         require('nvim-treesitter').install(langs)
+--         -- install tree-sitter-cli `brew install tree-sitter-cli`
+--         -- because some retard decided that a core feature needs an external dependency
+--
+--         -- very dirty and bad hacks to get spellchecks on identifiers
+--         -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
+--         vim.defer_fn(function()
+--             add_queries()
+--         end, 0)
+--     end,
+-- }
+--
 return {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    lazy = false,
+    "romus204/tree-sitter-manager.nvim",
+    dependencies = {}, -- tree-sitter CLI must be installed system-wide
     config = function()
-        require('nvim-treesitter').setup()
-        require('nvim-treesitter').install(langs)
         -- install tree-sitter-cli `brew install tree-sitter-cli`
         -- because some retard decided that a core feature needs an external dependency
+        require("tree-sitter-manager").setup({ ensure_installed = langs })
 
         -- very dirty and bad hacks to get spellchecks on identifiers
         -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'

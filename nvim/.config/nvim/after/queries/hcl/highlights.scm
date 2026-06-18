@@ -1,0 +1,3 @@
+; inherits: hcl
+
+(identifier) @spell
