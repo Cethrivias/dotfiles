@@ -46,6 +46,7 @@ stow -t $HOME television
 stow -t $HOME zsh
 stow -t $HOME aerospace
 stow -t $HOME MangoHud
+stow -t $HOME ssh
 ```
 
 # Other setup
