@@ -1,6 +1,6 @@
 #!/bin/bash
 
-deps="zen-browser-bin tmux zsh oh-my-posh-bin neovim obsidian git lazygit stow thefuck television sesh-bin yazi"
+deps="zen-browser-bin tmux zsh oh-my-posh-bin neovim obsidian git lazygit stow thefuck television sesh-bin yazi wl-clipboard"
 
 echo """
 === Installing $deps ===
