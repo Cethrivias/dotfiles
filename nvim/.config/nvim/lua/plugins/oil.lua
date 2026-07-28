@@ -1,9 +1,3 @@
-vim.keymap.set(
-    'n',
-    '<leader>5',
-    '<cmd>Oil<cr>',
-    { desc = 'Show file tree in a current window' }
-)
 return {
     'stevearc/oil.nvim',
     ---@module 'oil'
