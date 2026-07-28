@@ -62,8 +62,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+vim.lsp.enable('roslyn_ls')
+
 return {
-    "seblyng/roslyn.nvim",
+    -- "seblyng/roslyn.nvim",
     {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
@@ -86,10 +88,10 @@ return {
                 'mason-org/mason.nvim',
                 version = 'v2.x',
                 opts = {
-                    registries = {
-                        "github:mason-org/mason-registry",
-                        "github:Crashdummyy/mason-registry",
-                    },
+                    --     registries = {
+                    --         "github:mason-org/mason-registry",
+                    --         "github:Crashdummyy/mason-registry",
+                    --     },
                 }
             },
             'neovim/nvim-lspconfig',
