@@ -49,6 +49,16 @@ stow -t $HOME MangoHud
 stow -t $HOME ssh
 ```
 
+# Herdr
+
+```bash
+mkdir -p herdr/.config/herdr/plugins
+cd herdr/.config/herdr/plugins
+git clone https://github.com/paulbkim-dev/vim-herdr-navigation.git
+herdr plugin link $(pwd)/vim-herdr-navigation
+herdr plugin action list --plugin vim-herdr-navigation
+```
+
 # Other setup
 
 SSH keys setup is described well in this
