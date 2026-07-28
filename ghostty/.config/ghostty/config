@@ -4,7 +4,7 @@ background-opacity = 0.9
 font-family = JetBrainsMonoNL Nerd Font Mono
 # font-family = MesloLGS Nerd Font Mono
 font-size = 14
-# font-thicken = true
+font-thicken = true
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
@@ -19,7 +19,7 @@ window-padding-y = 3,0
 window-padding-balance = false
 
 keybind = super+equal=increase_font_size:.5
-keybind = super+minus=decrease_font_size:.5
+keybind = super+-=decrease_font_size:.5
 
 # MacOS
 window-colorspace = display-p3
