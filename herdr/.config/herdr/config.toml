@@ -118,6 +118,7 @@ split_horizontal = "prefix+\""
 # resize_mode = "prefix+r"
 # toggle_sidebar = "prefix+b"
 toggle_sidebar = "prefix+ctrl+s"
+copy_mode = "prefix+enter"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
