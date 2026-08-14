@@ -166,9 +166,10 @@ crun() {
 
 # Extra env
 export TERM="xterm-256color"
-export PATH="$PATH:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/bin"
+export PATH="$PATH:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/bin:$HOME/.local/bin"
 export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/nas.yml"
 export MANPAGER="bat -plman"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # EXPERIMENTAL
 function y () {
