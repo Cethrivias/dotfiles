@@ -34,17 +34,17 @@ return {
         },
 
         sources = {
-            default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+            default = { 'lazydev', 'snippets', 'lsp', 'buffer', 'path' },
             providers = {
                 lazydev = {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",
                     -- make lazydev completions top priority (see `:h blink.cmp`)
-                    score_offset = 100
+                    score_offset = 3 -- was 100
                 },
                 lsp = {
                     async = true,
-                    score_offset = 100
+                    -- score_offset = 100
                 }
             },
         },
@@ -52,9 +52,10 @@ return {
         signature = { enabled = true },
 
         completion = {
-            documentation = { auto_show = true },
+            documentation = { auto_show = false },
             ghost_text = { enabled = true },
             menu = {
+                auto_show = false,
                 draw = {
                     columns = {
                         -- { "label",      "label_description", gap = 1 },
