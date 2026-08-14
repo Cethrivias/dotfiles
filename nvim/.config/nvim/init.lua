@@ -26,11 +26,11 @@ require 'startup'
 require 'diagnostics'
 require 'filetypes'
 
-vim.cmd.colorscheme 'catppuccin'
+-- vim.cmd.colorscheme 'catppuccin'
+vim.cmd.colorscheme 'tokyonight'
 -- vim.cmd.colorscheme 'catppuccin-mocha'
 -- vim.cmd.colorscheme 'catppuccin-latte'
 --[[
-vim.cmd.colorscheme 'tokyonight'
 vim.cmd.colorscheme 'tokyonight-night'
 vim.cmd.colorscheme 'onedark'
 vim.cmd.colorscheme 'github_dark_default'

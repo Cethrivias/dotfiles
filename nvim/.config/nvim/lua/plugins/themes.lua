@@ -9,8 +9,17 @@ return {
         opts = { style = 'warmer' }, -- dark, darker, cool, deep, warm, warmer
     },
     {
-        'folke/tokyonight.nvim',
-        opts = {},
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            transparent = true,
+            styles = {
+                -- "dark", "transparent" or "normal"
+                sidebars = "transparent", -- style for sidebars, see below
+                floats = "dark", -- style for floating windows
+            },
+        },
     },
     {
         'catppuccin/nvim',
