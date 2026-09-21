@@ -2,7 +2,8 @@ local const_ls = require('const').listchars
 
 local ls = vim.deepcopy(const_ls)
 
-ls.leadtab = '┆ '; -- '› ';
+-- ls.leadtab = '┆ '; -- '› ';
+ls.leadtab = '  '; -- '› ';
 
 vim.opt_local.listchars = ls;
 vim.opt_local.list = true;
