@@ -105,8 +105,8 @@ alias ls="ls --color"
 alias ls="eza"
 alias ..="cd .."
 alias ...="cd ../.."
-alias dt='dotnet test --logger "console;verbosity=normal"'
-alias dtf='dotnet test --logger "console;verbosity=normal" --filter'
+alias dt='DiffEngine_Disabled=true dotnet test --logger "console;verbosity=normal"'
+alias dtf='DiffEngine_Disabled=true dotnet test --logger "console;verbosity=normal" --filter'
 alias dbe='dotnet build | grep --color=always " error "'
 alias dwatch='dotnet watch build --project'
 alias javals="/usr/libexec/java_home -V"
