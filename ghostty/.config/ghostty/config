@@ -1,5 +1,6 @@
-theme = dark:Catppuccin Mocha,light:Catppuccin Latte
-background-opacity = 0.9
+# theme = dark:Catppuccin Mocha,light:Catppuccin Latte
+theme = dark:Tokyonight Storm,light:Tokyonight Day
+background-opacity = 1
 
 font-family = JetBrainsMonoNL Nerd Font Mono
 # font-family = MesloLGS Nerd Font Mono
